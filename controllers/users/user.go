@@ -53,7 +53,6 @@ func (con UserController) List(c *gin.Context) {
 	//之前的分页有问题，我们这的需求是分页之前统计总数
 	countQuery := query
 	countQuery.Model(&models.User{}).Count(&total)
-
 	query.Limit(pageSize).Offset((pageNum - 1) * pageSize).Order("user_id ASC").Find(&userList)
 
 	c.JSON(200, gin.H{
