@@ -42,4 +42,11 @@ func init() {
 	}
 	//打印sql
 	DB = DB.Debug()
+	//设置连接池
+	sqlDB, err := DB.DB()
+	if err != nil {
+		fmt.Println(err)
+	}
+	sqlDB.SetMaxOpenConns(10) // 最大连接数
+	sqlDB.SetMaxIdleConns(5)  // 空闲连接数
 }
