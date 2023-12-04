@@ -15,10 +15,8 @@ type Permission struct {
 	Path       string    `json:"path"`
 	UpdateTime time.Time `json:"updateTime"`
 	Id         string    `gorm:"column:_id" gorm:"''" json:"_id"`
-
+	//递归便利字段
 	Children []Permission `gorm:"foreignKey:ParentId;references:Id" json:"children"`
-	//这个字段是为了前端方便，把children复制到buttons
-	//Buttons  []Permission `gorm:"foreignKey:ParentId;references:Id" json:"buttons"`
 }
 
 func (Permission) TableName() string {
