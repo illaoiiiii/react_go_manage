@@ -3,7 +3,6 @@ package models
 import "time"
 
 type Order struct {
-	ID            string    `gorm:"column:_id" json:"_id"`
 	OrderId       string    `json:"orderId"`
 	CityName      string    `json:"cityName"`
 	UserName      string    `json:"userName"`
@@ -16,7 +15,6 @@ type Order struct {
 	VehicleName   string    `json:"vehicleName"`
 	DriverName    string    `json:"driverName"`
 	State         int       `json:"state"`
-	UseTime       time.Time `json:"useTime"`
 	EndTime       time.Time `json:"endTime"`
 	CreateId      int       `json:"createId"`
 	CreateTime    time.Time `json:"createTime"`

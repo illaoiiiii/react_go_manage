@@ -3,7 +3,7 @@ package models
 import "time"
 
 type Permission struct {
-	CreateId   int       `json:"create_id"`
+	CreateId   int       `gorm:"default:null" json:"create_id"`
 	CreateTime time.Time `gorm:"default:null" json:"createTime"`
 	Icon       string    `json:"icon"`
 	MenuCode   string    `json:"menuCode"`

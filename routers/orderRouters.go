@@ -11,5 +11,8 @@ func OrderRoutersInit(r *gin.Engine) {
 		orderRouter.GET("/list", order.TypeController{}.List)
 		orderRouter.GET("/vehicleList", order.TypeController{}.VehicleList)
 		orderRouter.GET("/cityList", order.TypeController{}.CityList)
+		orderRouter.POST("/orderExport", order.TypeController{}.OrderExport)
+		orderRouter.POST("/orderImport", order.TypeController{}.OrderImport)
+
 	}
 }

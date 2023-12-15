@@ -23,8 +23,8 @@ func UnixToTime(timestamp int) string {
 
 // DateToUnix 日期转换成时间戳 2020-05-02 15:04:05
 func DateToUnix(str string) int64 {
-	template := "2006-01-02 15:04:05"
-	t, err := time.ParseInLocation(template, str, time.Local)
+	timeTemplate := "2006-01-02 15:04:05"
+	t, err := time.ParseInLocation(timeTemplate, str, time.Local)
 	if err != nil {
 		return 0
 	}
@@ -43,16 +43,16 @@ func GetUnixNano() int64 {
 
 // GetDate 获取当前的日期
 func GetDate() string {
-	template := "2006-01-02 15:04:05"
-	return time.Now().Format(template)
+	timeTemplate := "2006-01-02 15:04:05"
+	return time.Now().Format(timeTemplate)
 }
 
 // GetDateWithZone 获取当前日期加上时区
 func GetDateWithZone() time.Time {
 	//模版
-	template := "2006-01-02 15:04:05"
+	timeTemplate := "2006-01-02 15:04:05"
 	//实际要输出的时间
-	t, err := time.Parse(template, time.Now().Format(template))
+	t, err := time.Parse(timeTemplate, time.Now().Format(timeTemplate))
 	if err != nil {
 		// 处理解析错误
 		fmt.Println("err 时间解析错误", err)
@@ -62,8 +62,8 @@ func GetDateWithZone() time.Time {
 
 // GetDay 获取年月日
 func GetDay() string {
-	template := "20060102"
-	return time.Now().Format(template)
+	timeTemplate := "20060102"
+	return time.Now().Format(timeTemplate)
 }
 
 // Md5 md5加密
@@ -96,6 +96,24 @@ func String(n int) string {
 	return str
 }
 
+// 把数字转换成对应字母字符串
+func ToAlphaString(number int) string {
+	if number <= 0 {
+		return ""
+	}
+
+	base := 'A' - 1 // 基准值为字母'A'的Unicode码减去1
+	var result string
+
+	for number > 0 {
+		digit := (number-1)%26 + 1 // 求余数，并加上基准值得到对应的字母的Unicode码
+		result = string(base+int32(digit)) + result
+		number = (number - digit) / 26 // 更新number
+	}
+
+	return result
+}
+
 // StringToArray 把字符串转换成数组
 func StringToArray(str string) []string {
 	// 使用正则表达式提取数字部分
@@ -107,6 +125,26 @@ func StringToArray(str string) []string {
 		result[i] = v
 	}
 	return result
+}
+
+// StringToTime 把传过来的时间字符串转成time.Time格式
+func StringToTime(str string) time.Time {
+	// 指定输入字符串的时间格式
+	layout := "01/02/06 15:04"
+
+	// 指定目标时区
+	location, err := time.LoadLocation("Asia/Shanghai")
+	if err != nil {
+		panic("无法加载时区：" + err.Error())
+	}
+
+	// 解析字符串为 time.Time 类型，并转换为目标时区
+	t, err := time.ParseInLocation(layout, str, location)
+	if err != nil {
+		panic("日期时间解析错误：" + err.Error())
+	}
+
+	return t
 }
 
 // Substr Substr截取字符串
@@ -327,6 +365,6 @@ func GetRandomNum() string {
 // GetOrderId
 func GetOrderId() string {
 	// 2022020312233
-	template := "20060102150405"
-	return time.Now().Format(template) + GetRandomNum()
+	timeTemplate := "20060102150405"
+	return time.Now().Format(timeTemplate) + GetRandomNum()
 }
