@@ -1,1 +1,3 @@
+FrontEnd React and BackEnd Golang BackEnd Manage System
+前端React和后端GO的后台管理系统后端
 我这个项目的时间存储方式有很多种单纯是为了测试自己的能力，实际工作中还是看具体业务场景
