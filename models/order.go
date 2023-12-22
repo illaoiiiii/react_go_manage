@@ -10,13 +10,12 @@ type Order struct {
 	EndAddress    string    `json:"endAddress"`
 	OrderAmount   int       `json:"orderAmount"`
 	UserPayAmount int       `json:"userPayAmount"`
-	DriverAmount  int       `json:"driverAmount"`
 	PayType       int       `json:"payType"`
 	VehicleName   string    `json:"vehicleName"`
 	DriverName    string    `json:"driverName"`
 	State         int       `json:"state"`
 	EndTime       time.Time `json:"endTime"`
-	CreateId      int       `json:"createId"`
+	CreateId      int       `json:"createId" gorm:"-"`
 	CreateTime    time.Time `json:"createTime"`
 }
 

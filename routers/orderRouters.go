@@ -13,6 +13,6 @@ func OrderRoutersInit(r *gin.Engine) {
 		orderRouter.GET("/cityList", order.TypeController{}.CityList)
 		orderRouter.POST("/orderExport", order.TypeController{}.OrderExport)
 		orderRouter.POST("/orderImport", order.TypeController{}.OrderImport)
-
+		orderRouter.POST("/delete", order.TypeController{}.Delete)
 	}
 }
