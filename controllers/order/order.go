@@ -268,6 +268,7 @@ func (con TypeController) OrderImport(c *gin.Context) {
 			fmt.Println(row)
 			continue // 跳过第一行
 		}
+		fmt.Println(row[5])
 		order := models.Order{
 			//OrderId:  这个之后在做什么分布式ID
 			CityName:      row[2],
