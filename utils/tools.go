@@ -130,7 +130,7 @@ func StringToArray(str string) []string {
 // StringToTime 把传过来的时间字符串转成time.Time格式
 func StringToTime(str string) time.Time {
 	// 指定输入字符串的时间格式
-	layout := "01/02/06 15:04"
+	layout := "2006-1-2 15:04:05"
 
 	// 指定目标时区
 	location, err := time.LoadLocation("Asia/Shanghai")
