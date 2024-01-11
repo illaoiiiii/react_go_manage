@@ -257,16 +257,16 @@ func (con TypeController) OrderImport(c *gin.Context) {
 		return
 	}
 	for i, row := range rows {
+		//不要第一行的介绍
+		if i == 0 {
+			//fmt.Println(row)
+			continue // 跳过第一行
+		}
 		// 处理一些数据
 		rowSix, err := utils.Int(row[6])
 		rowSeven, err1 := utils.Int(row[7])
 		if err != nil || err1 != nil {
 			fmt.Println(err, err1)
-		}
-		//不要第一行的介绍
-		if i == 0 {
-			fmt.Println(row)
-			continue // 跳过第一行
 		}
 		fmt.Println(row[5])
 		order := models.Order{
@@ -289,7 +289,6 @@ func (con TypeController) OrderImport(c *gin.Context) {
 			})
 			return
 		}
-		fmt.Println()
 	}
 
 	// 返回响应
