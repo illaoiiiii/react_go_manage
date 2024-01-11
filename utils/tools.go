@@ -129,22 +129,24 @@ func StringToArray(str string) []string {
 
 // StringToTime 把传过来的时间字符串转成time.Time格式
 func StringToTime(str string) time.Time {
-	// 指定输入字符串的时间格式
-	layout := "2006-1-2 15:04:05"
+	layout1 := "1/2/06 15:04"
+	layout2 := "2006-01-02 15:04:05"
 
-	// 指定目标时区
-	location, err := time.LoadLocation("Asia/Shanghai")
+	// 解析时间字符串
+	parsedTime, err := time.Parse(layout1, str)
+	fmt.Println(parsedTime)
 	if err != nil {
-		panic("无法加载时区：" + err.Error())
+		panic("解析时间失败:" + err.Error())
 	}
+	//time转string 让它变成正常的格式
+	dbTimeString := parsedTime.Format(layout2)
 
-	// 解析字符串为 time.Time 类型，并转换为目标时区
-	t, err := time.ParseInLocation(layout, str, location)
-	if err != nil {
-		panic("日期时间解析错误：" + err.Error())
+	//string转time
+	parsedTime, err1 := time.Parse(layout2, dbTimeString)
+	if err1 != nil {
+		panic("解析时间失败:" + err.Error())
 	}
-
-	return t
+	return parsedTime
 }
 
 // Substr Substr截取字符串
