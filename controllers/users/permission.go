@@ -17,8 +17,9 @@ func (con PermissionController) List(c *gin.Context) {
 	userStruct, err := utils.ParseToken(jwtWithoutBearer)
 
 	if err != nil {
-		c.JSON(400, gin.H{
-			"msg": "获取用户权限失败",
+		c.JSON(200, gin.H{
+			"code": 50001,
+			"msg":  "获取用户权限失败",
 		})
 		return
 	}
